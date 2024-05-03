@@ -4,8 +4,7 @@ import Button from "@/ui/Button";
 const Categories = () => {
   return (
     <div className="flex space-x-5">
-      <Button type="primary">All Products</Button>
-
+      <Button>All Products</Button>
       <Button>Men&apos;s Clothing</Button>
       <Button>Jewelery</Button>
       <Button>Electronics</Button>

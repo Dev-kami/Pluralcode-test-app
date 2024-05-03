@@ -5,7 +5,7 @@ import NavThirdSlice from "./NavThirdSlice";
 
 const NavBar = () => {
   return (
-    <nav className="fixed w-full pb-5">
+    <nav className="fixed w-full pb-5 bg-white z-50">
       <NavFirstSlice />
       <NavSecondSlice />
       <NavThirdSlice />
