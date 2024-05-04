@@ -38,8 +38,7 @@ function CartProvider({ children }: { children: React.ReactNode }) {
   }
 
   function totalCartPrice() {
-    // return carts.reduce((acc, item) => acc + item.price * quantity, 0);
-    return carts.reduce((acc, item) => acc + item.price, 0);
+    return carts.reduce((acc, item) => acc + item.price * quantity, 0);
   }
   function incrementQuantity() {
     setQuantity((prev) => prev + 1);
