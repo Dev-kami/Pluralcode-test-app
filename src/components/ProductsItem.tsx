@@ -4,14 +4,18 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 import { CiShoppingCart } from "react-icons/ci";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const ProductsItem = ({ product }: { product: ProductsType }) => {
+  const router = useRouter();
   const [viewDetails, setViewDetails] = useState(false);
 
   return (
-    <div className="mt-10 border border-stone-400 rounded-lg">
-      <Link href={`/products/${product.id}`} className="relative">
+    <div className="mt-10 border border-stone-400 rounded-lg overflow-hidden">
+      <div
+        onClick={() => router.push(`/products/${product.id}`)}
+        className="relative cursor-pointer"
+      >
         <Image
           onMouseOver={() => setViewDetails(true)}
           onMouseOut={() => setViewDetails(false)}
@@ -22,13 +26,15 @@ const ProductsItem = ({ product }: { product: ProductsType }) => {
           height={1000}
         />
         <div
+          onMouseOver={() => setViewDetails(true)}
+          onMouseOut={() => setViewDetails(false)}
           className={`${
             viewDetails ? "bg-red-500/50" : "hidden"
-          } h-full w-full absolute top-0 left-0 flex items-center justify-center text-xl text-white font-bold`}
+          } h-full w-full rounded-b-lg absolute top-0 left-0 flex items-center justify-center text-xl text-white font-bold`}
         >
           View Details
         </div>
-      </Link>
+      </div>
 
       <div className="flex justify-between items-center px-3 my-5">
         <span>${product.price}</span>
