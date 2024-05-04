@@ -8,7 +8,7 @@ const NavFirstSlice = () => {
   });
 
   return (
-    <div className="flex justify-between px-10 py-4 bg-[#2F333A] text-white">
+    <div className="flex justify-between md:px-10 px-5 py-4 bg-[#2F333A] text-white">
       <h3 className="text-sm">Welcome to Test & Get the best product</h3>
       <span className="text-sm">{todaysDate}</span>
     </div>

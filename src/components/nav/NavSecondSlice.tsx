@@ -11,7 +11,7 @@ const NavSecondSlice = () => {
   const { carts } = useCart();
 
   return (
-    <div className="flex justify-between px-10 border-b border-b-stone-400 py-6">
+    <div className="flex justify-between md:px-10 px-5 border-b border-b-stone-400 py-6">
       <Logo />
 
       <span

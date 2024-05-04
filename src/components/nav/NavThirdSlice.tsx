@@ -12,7 +12,7 @@ const NavThirdSlice = () => {
     { title: "About", link: "/about" },
   ];
   return (
-    <div className="px-10 pt-6 pb-3 border-b border-b-stone-400">
+    <div className="md:px-10 px-5 pt-6 pb-3 border-b border-b-stone-400">
       <ul className="flex space-x-7">
         {navData.map(({ title, link }, index) => (
           <Link
