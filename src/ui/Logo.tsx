@@ -7,7 +7,10 @@ const Logo = () => {
   return (
     <Link
       href={"/"}
-      className="px-5 flex font-inconsolata text-3xl font-semibold cursor-pointer"
+      className="px-5 flex font-inconsolata font-semibold cursor-pointer"
+      style={{
+        fontSize: "1.7rem",
+      }}
     >
       Test <span className="text-primary">.</span>
     </Link>
