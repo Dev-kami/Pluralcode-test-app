@@ -1,21 +1,17 @@
 "use client";
 
+import { useCart } from "@/context/CartContext";
 import Button from "@/ui/Button";
 import Image from "next/image";
 import React from "react";
 
-const ProductId = ({
-  product,
-}: //   onAddCart,
-{
-  product: ProductsType;
-  //   onAddCart: (newCart: ProductsType) => void;
-}) => {
+const ProductId = ({ product }: { product: ProductsType }) => {
+  const { addToCart } = useCart();
+
   const newCart = {
     id: product.id,
     title: product.title,
     price: product.price,
-    // description: product.description,
     category: product.category,
     image: product.image,
   };
@@ -48,7 +44,7 @@ const ProductId = ({
           <Button
             variant="secondary"
             className="uppercase"
-            onClick={() => onAddCart(newCart)}
+            onClick={() => addToCart(newCart)}
           >
             Add To Cart
           </Button>

@@ -7,6 +7,7 @@ import { getAllProducts } from "@/services/getAllProducts";
 
 const page = async () => {
   const products: ProductsType[] = await getAllProducts();
+
   return (
     <main>
       <NavBar />
