@@ -14,7 +14,7 @@ const Sidebar = ({
   const router = useRouter();
   const { carts, clearCart, totalCartPrice } = useCart();
   return (
-    <div className="fixed top-0 right-0 border-l border-l-gray-300 h-full bg-white w-[38%] py-12 px-7 overflow-auto">
+    <div className="fixed top-0 right-0 border-l border-l-gray-300 h-full bg-white md:w-[32rem] sm:w-[27rem] w-full py-12 px-7 overflow-auto">
       {/* Header */}
       <header className="flex items-center justify-between border-b border-b-gray-300 pb-5">
         <p className="font-bold">Shopping Cart {carts.length}</p>
@@ -35,6 +35,7 @@ const Sidebar = ({
         </button>
       </div>
 
+      {/* Checkout */}
       <div className="border-b border-b-gray-300 pb-7">
         <button
           onClick={() => router.push("/viewcart")}
@@ -44,6 +45,7 @@ const Sidebar = ({
         </button>
       </div>
 
+      {/* Carts */}
       {carts.map((cart) => (
         <Cart key={cart.id} cart={cart} />
       ))}
