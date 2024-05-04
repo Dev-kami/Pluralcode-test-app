@@ -4,13 +4,14 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 import { CiShoppingCart } from "react-icons/ci";
+import Link from "next/link";
 
 const ProductsItem = ({ product }: { product: ProductsType }) => {
   const [viewDetails, setViewDetails] = useState(false);
 
   return (
     <div className="mt-10 border border-stone-400 rounded-lg">
-      <div className="relative">
+      <Link href={`/products/${product.id}`} className="relative">
         <Image
           onMouseOver={() => setViewDetails(true)}
           onMouseOut={() => setViewDetails(false)}
@@ -27,7 +28,7 @@ const ProductsItem = ({ product }: { product: ProductsType }) => {
         >
           View Details
         </div>
-      </div>
+      </Link>
 
       <div className="flex justify-between items-center px-3 my-5">
         <span>${product.price}</span>

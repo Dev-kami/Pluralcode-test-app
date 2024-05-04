@@ -17,13 +17,48 @@
 
 type ButtonProps = {
   children: React.ReactNode;
+  variant?: "primary" | "default" | "secondary";
+  className?: string;
 } & React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 >;
 
-const Button = ({ children }: ButtonProps) => {
-  return <button>{children}</button>;
+const Button = ({
+  children,
+  variant = "default",
+  className,
+  ...rest
+}: ButtonProps) => {
+  const defaultClasses = "border border-stone-500 py-1 px-3 text-sm";
+
+  if (variant === "secondary") {
+    return (
+      <button
+        {...rest}
+        className={`${defaultClasses} ${className} bg-primary text-white`}
+      >
+        {children}
+      </button>
+    );
+  }
+
+  if (variant === "primary") {
+    return (
+      <button
+        {...rest}
+        className={`${defaultClasses} ${className} rounded-lg bg-primary text-white`}
+      >
+        {children}
+      </button>
+    );
+  }
+
+  return (
+    <button {...rest} className={`${defaultClasses} ${className} rounded-lg`}>
+      {children}
+    </button>
+  );
 };
 
 export default Button;

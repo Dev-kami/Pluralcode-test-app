@@ -1,6 +1,6 @@
 "use client";
 
-import NavThirdSlice from "@/components/nav/NavThirdSlice";
+import NavBar from "@/components/nav/NavBar";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -9,8 +9,10 @@ const AboutPage = () => {
 
   return (
     <div>
-      <NavThirdSlice />
-      <h1>This is the about page</h1>
+      <NavBar />
+      <div className="pt-60">
+        <h1>This is the about page</h1>
+      </div>
       <button onClick={() => router.push("/")}>Go back</button>
     </div>
   );
