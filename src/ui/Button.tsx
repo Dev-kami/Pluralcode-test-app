@@ -1,20 +1,3 @@
-// import React from "react";
-
-// type ButtonProps = {
-//   children: React.ReactNode;
-//   type?: "primary" | "default";
-// };
-
-// const Button = ({ children, type }: ButtonProps) => {
-//   if (type === "primary") {
-//     <button className="py-2 px-4 bg-red-500">{children}</button>;
-//   }
-
-//   return <button className="border border-black">{children}</button>;
-// };
-
-// export default Button;
-
 type ButtonProps = {
   children: React.ReactNode;
   variant?: "primary" | "default" | "secondary";
@@ -30,7 +13,7 @@ const Button = ({
   className,
   ...rest
 }: ButtonProps) => {
-  const defaultClasses = "border border-stone-500 py-1 px-3 text-sm";
+  const defaultClasses = "border border-stone-500 py-2 px-2 text-sm";
 
   if (variant === "secondary") {
     return (
@@ -47,7 +30,7 @@ const Button = ({
     return (
       <button
         {...rest}
-        className={`${defaultClasses} ${className} rounded-lg bg-primary text-white`}
+        className={`${defaultClasses} ${className} rounded-md bg-primary text-white`}
       >
         {children}
       </button>
@@ -55,7 +38,7 @@ const Button = ({
   }
 
   return (
-    <button {...rest} className={`${defaultClasses} ${className} rounded-lg`}>
+    <button {...rest} className={`${defaultClasses} ${className} rounded-md`}>
       {children}
     </button>
   );

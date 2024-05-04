@@ -19,9 +19,10 @@ const Categories = () => {
   }
 
   return (
-    <div className="flex">
+    <div className="flex lg:gap-0 gap-4 flex-wrap justify-center">
       {categories.map((category) => (
         <Button
+          className="border border-stone-500"
           variant={category.id === isActive ? "primary" : "default"}
           onClick={() => handleClick(category.id, category.name)}
           key={category.name}
