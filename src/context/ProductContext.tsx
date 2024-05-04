@@ -1,22 +1,22 @@
-"use client";
+// "use client";
 
-import React, { createContext, useContext } from "react";
+// import React, { createContext, useContext } from "react";
 
-type ProductContextType = {
-  products: ProductsType[];
-  loading: boolean;
-};
+// type ProductContextType = {
+//   products: ProductsType[];
+//   loading: boolean;
+// };
 
-const ProductContext = createContext({} as ProductContextType);
+// const ProductContext = createContext({} as ProductContextType);
 
-const ProductProvider = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <ProductContext.Provider value={{}}>{children}</ProductContext.Provider>
-  );
-};
+// const ProductProvider = ({ children }: { children: React.ReactNode }) => {
+//   return (
+//     <ProductContext.Provider value={{}}>{children}</ProductContext.Provider>
+//   );
+// };
 
-const useProduct = () => {
-  return useContext(ProductContext);
-};
+// const useProduct = () => {
+//   return useContext(ProductContext);
+// };
 
-export { ProductProvider, useProduct };
+// export { ProductProvider, useProduct };
