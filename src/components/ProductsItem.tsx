@@ -11,7 +11,7 @@ const ProductsItem = ({ product }: { product: ProductsType }) => {
   const [viewDetails, setViewDetails] = useState(false);
 
   return (
-    <div className="mt-10 border border-stone-400 rounded-lg overflow-hidden">
+    <div className="mt-10 w-[20rem] border border-stone-400 rounded-lg overflow-hidden">
       <div
         onClick={() => router.push(`/products/${product.id}`)}
         className="relative cursor-pointer"
