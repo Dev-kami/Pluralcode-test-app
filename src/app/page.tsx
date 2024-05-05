@@ -1,10 +1,8 @@
 import React from "react";
 import NavBar from "@/components/nav/NavBar";
-import ProductsHeader from "@/components/ProductsHeader";
-import ProductsPage from "@/components/Products";
 import Footer from "@/components/Footer";
 import { getAllProducts } from "@/services/getAllProducts";
-import Pagination from "@/components/Pagination";
+import ProductsWrapper from "@/components/ProductsWrapper";
 
 const page = async () => {
   const products: ProductsType[] = await getAllProducts();
@@ -12,9 +10,7 @@ const page = async () => {
   return (
     <main>
       <NavBar />
-      <ProductsHeader />
-      <ProductsPage products={products} />
-      <Pagination products={products} />
+      <ProductsWrapper products={products} />
       <Footer />
     </main>
   );
