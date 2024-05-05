@@ -5,35 +5,40 @@ const Pagination = ({
   setCurrentPage,
   indexOfLastProduct,
   indexOfFirstProduct,
+  totalProducts,
 }: {
-  products: ProductsType[];
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   indexOfLastProduct: number;
   indexOfFirstProduct: number;
+  totalProducts: number;
 }) => {
+  const [currentPage] = [indexOfLastProduct / 6];
+
   return (
     <div className="flex justify-center gap-3 my-10">
       <Button
-        disabled={Boolean(indexOfLastProduct)}
-        className="disabled:opacity-50"
         onClick={() => setCurrentPage((currentPage) => currentPage - 1)}
+        disabled={indexOfFirstProduct === 0}
       >
         Prev
       </Button>
-      <Button>1</Button>
-      <Button>2</Button>
-      <Button>2</Button>
-      <Button>3</Button>
-      <Button>4</Button>
+
+      {Array.from({ length: 4 }, (_, index) => (
+        <Button
+          onClick={() => setCurrentPage(index + 1)}
+          className={`${currentPage === index + 1 && "bg-primary text-white"}`}
+          key={index}
+        >
+          {index + 1}
+        </Button>
+      ))}
       <Button
-        disabled={Boolean(indexOfFirstProduct)}
-        className="disabled:opacity-50"
         onClick={() => setCurrentPage((currentPage) => currentPage + 1)}
+        disabled={indexOfLastProduct >= totalProducts}
       >
         Next
       </Button>
     </div>
   );
 };
-
 export default Pagination;
