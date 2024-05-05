@@ -1,11 +1,9 @@
 import React from "react";
 
 const SearchProducts = ({
-  products,
   query,
   setQuery,
 }: {
-  products: ProductsType[];
   query: string;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
 }) => {

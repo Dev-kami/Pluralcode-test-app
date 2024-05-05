@@ -26,7 +26,7 @@ const ProductsWrapper = ({ products }: { products: ProductsType[] }) => {
 
   return (
     <div>
-      <ProductsHeader query={query} setQuery={setQuery} products={products} />
+      <ProductsHeader query={query} setQuery={setQuery} />
       <ProductsPage products={currentProducts} />
       <Pagination
         setCurrentPage={setCurrentPage}
