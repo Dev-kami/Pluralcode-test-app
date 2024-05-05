@@ -15,7 +15,6 @@ const Sidebar = ({
 }) => {
   const router = useRouter();
   const { carts, clearCart, totalCartPrice } = useCart();
-  console.log(showSidebar);
   return (
     <div
       className={`fixed top-0 border-l border-l-gray-300 h-full bg-white z-50 md:w-[32rem] sm:w-[27rem] w-full py-12 px-7 overflow-auto ${
