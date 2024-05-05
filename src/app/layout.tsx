@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${inconsolata.variable} h-full`}>
+      <body className={`${inter.className} ${inconsolata.variable}`}>
         <CartProvider>
           {children}
           <Footer />

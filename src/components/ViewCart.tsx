@@ -14,7 +14,7 @@ const ViewCart = () => {
       </h1>
 
       {!carts.length ? (
-        <p className="text-center">Your Cart is Empty</p>
+        <p className="text-center mb-[15.7rem]">Your Cart is Empty</p>
       ) : (
         carts.map((cart) => (
           <div
