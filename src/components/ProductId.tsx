@@ -17,7 +17,7 @@ const ProductId = ({ product }: { product: ProductsType }) => {
   };
 
   return (
-    <div className="flex gap-x-10 justify-between pt-60 px-10">
+    <div className="pt-60 px-10 flex gap-x-10 justify-between md:flex-row md:gap-y-0 gap-y-10 flex-col">
       <div className="w-full">
         <Image
           className="w-full h-[20rem]"
@@ -29,21 +29,25 @@ const ProductId = ({ product }: { product: ProductsType }) => {
       </div>
 
       <div className="w-full flex flex-col gap-y-4 items-start">
-        <h1 className="text-6xl font-semibold">{product.title}</h1>
+        <h1 className="md:text-5xl sm:text-4xl text-3xl md:text-left text-center font-bold">
+          {product.title}
+        </h1>
 
-        <div className="flex justify-between text-lg mt-10 mb-4 w-full">
-          <p className="flex-1 text-center font-medium">${product.price}</p>
-          <span className="uppercase flex-[2] text-center text-white bg-primary">
+        <div className="flex justify-between mt-10 mb-4 w-full">
+          <p className="flex-1 text-center text-lg font-bold">
+            ${product.price}
+          </p>
+          <span className="uppercase flex-[2] flex items-center justify-center tracking-widest text-center text-white bg-primary">
             {product.category}
           </span>
         </div>
 
         <p>{product.description}</p>
 
-        <div className="mb-10">
+        <div className="mb-10 md:w-fit w-full">
           <Button
             variant="secondary"
-            className="uppercase"
+            className="uppercase hover:bg-primary/95 w-full"
             onClick={() => addToCart(newCart)}
           >
             Add To Cart

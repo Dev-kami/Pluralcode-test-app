@@ -12,9 +12,7 @@ const ProductIdPage = async ({ params }: { params: { productId: string } }) => {
   return (
     <div>
       <NavBar />
-
       <ProductId product={singleProduct} />
-
       <Footer />
     </div>
   );
