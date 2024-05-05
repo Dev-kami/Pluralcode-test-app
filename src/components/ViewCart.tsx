@@ -19,7 +19,7 @@ const ViewCart = () => {
         carts.map((cart) => (
           <div
             key={cart.id}
-            className="border border-black p-10 mx-10 flex items-center gap-10"
+            className="border border-black p-10 mx-10 flex md:flex-row flex-col items-center gap-10"
           >
             <div>
               <Image
