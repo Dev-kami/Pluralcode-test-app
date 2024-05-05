@@ -8,18 +8,25 @@ import Pagination from "./Pagination";
 const PRODUCTS_PER_PAGE = 6;
 
 const ProductsWrapper = ({ products }: { products: ProductsType[] }) => {
+  const [query, setQuery] = React.useState("");
+
+  // Filter products by title
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(query.toLowerCase())
+  );
+
+  // Pagination
   const [currentPage, setCurrentPage] = React.useState(1);
   const indexOfLastProduct = currentPage * PRODUCTS_PER_PAGE;
   const indexOfFirstProduct = indexOfLastProduct - PRODUCTS_PER_PAGE;
-  const totalProducts = products.length;
-  const currentProducts = products.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+  const totalProducts = query ? filteredProducts.length : products.length;
+  const currentProducts = query
+    ? filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct)
+    : products.slice(indexOfFirstProduct, indexOfLastProduct);
 
   return (
     <div>
-      <ProductsHeader />
+      <ProductsHeader query={query} setQuery={setQuery} products={products} />
       <ProductsPage products={currentProducts} />
       <Pagination
         setCurrentPage={setCurrentPage}
