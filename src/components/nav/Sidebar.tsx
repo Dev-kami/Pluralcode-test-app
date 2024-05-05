@@ -14,7 +14,7 @@ const Sidebar = ({
   const router = useRouter();
   const { carts, clearCart, totalCartPrice } = useCart();
   return (
-    <div className="fixed top-0 right-0 border-l border-l-gray-300 h-full bg-white md:w-[32rem] sm:w-[27rem] w-full py-12 px-7 overflow-auto">
+    <div className="fixed top-0 right-0 border-l border-l-gray-300 h-full bg-white z-50 md:w-[32rem] sm:w-[27rem] w-full py-12 px-7 overflow-auto">
       {/* Header */}
       <header className="flex items-center justify-between border-b border-b-gray-300 pb-5">
         <p className="font-bold">Shopping Cart {carts.length}</p>

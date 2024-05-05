@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer";
 import ProductId from "@/components/ProductId";
 import NavBar from "@/components/nav/NavBar";
 import { getSingleProduct } from "@/services/getSinglePost";
@@ -13,7 +12,6 @@ const ProductIdPage = async ({ params }: { params: { productId: string } }) => {
     <div>
       <NavBar />
       <ProductId product={singleProduct} />
-      <Footer />
     </div>
   );
 };
