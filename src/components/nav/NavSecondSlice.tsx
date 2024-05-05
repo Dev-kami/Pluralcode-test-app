@@ -24,7 +24,9 @@ const NavSecondSlice = () => {
         </span>
       </span>
 
-      {showSidebar && <Sidebar setShowSidebar={setShowSidebar} />}
+      {/* {showSidebar && ( */}
+      <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+      {/* )} */}
     </div>
   );
 };
