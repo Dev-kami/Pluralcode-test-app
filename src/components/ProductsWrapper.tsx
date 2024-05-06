@@ -10,11 +10,36 @@ const PRODUCTS_PER_PAGE = 6;
 const ProductsWrapper = ({ products }: { products: ProductsType[] }) => {
   const [query, setQuery] = React.useState("");
   const [isActive, setIsActive] = React.useState(0);
+  const [filteredProducts, setFilteredProducts] = React.useState(products);
 
-  // Filter products by title
-  const filteredProducts = products.filter((product) =>
-    product.title.toLowerCase().includes(query.toLowerCase())
-  );
+  function handleFilterByCategory(id: number, category: string) {
+    setIsActive(id);
+
+    // If "all products" is selected, show all products
+    if (category === "all products") {
+      setFilteredProducts(products);
+    } else {
+      // Filter products by category
+      const filteredByCategory = products.filter(
+        (product) => product.category === category
+      );
+
+      // Apply query filtering
+      const filteredByQuery = filteredByCategory.filter((product) =>
+        product.title.toLowerCase().includes(query.toLowerCase())
+      );
+
+      setFilteredProducts(filteredByQuery);
+    }
+  }
+
+  // Filter products by query
+  React.useEffect(() => {
+    const filteredByQuery = products.filter((product) =>
+      product.title.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredProducts(filteredByQuery);
+  }, [query, products]);
 
   // Pagination
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -23,24 +48,7 @@ const ProductsWrapper = ({ products }: { products: ProductsType[] }) => {
   const totalProducts = query ? filteredProducts.length : products.length;
   const currentProducts = query
     ? filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct)
-    : products.slice(indexOfFirstProduct, indexOfLastProduct);
-
-  function handleFilterByCategory(id: number, category: string) {
-    setIsActive(id);
-
-    // Filter products by category
-    if (category === "men's clothing") {
-      return products.filter((product) => product.category === category);
-    } else if (category === "jewelery") {
-      return products.filter((product) => product.category === category);
-    } else if (category === "electronics") {
-      return products.filter((product) => product.category === category);
-    } else if (category === "women's clothing") {
-      return products.filter((product) => product.category === category);
-    } else {
-      return products;
-    }
-  }
+    : filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   return (
     <div>
