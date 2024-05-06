@@ -20,9 +20,9 @@ function CartProvider({ children }: { children: React.ReactNode }) {
   const [quantity, setQuantity] = React.useState<number>(1);
 
   function addToCart(newCart: ProductsType) {
-    // Check if cart already exists
-    const existingCart = carts.find((item) => item.id === newCart.id);
-    if (existingCart) {
+    // Check if product already exists
+    const existingProduct = carts.find((item) => item.id === newCart.id);
+    if (existingProduct) {
       setQuantity((prev) => prev + 1);
       return;
     }
