@@ -23,7 +23,7 @@ const Pagination = ({
         Prev
       </Button>
 
-      {Array.from({ length: 4 }, (_, index) => (
+      {Array.from({ length: Math.ceil(totalProducts / 6) }, (_, index) => (
         <Button
           onClick={() => setCurrentPage(index + 1)}
           className={`${currentPage === index + 1 && "bg-primary text-white"}`}

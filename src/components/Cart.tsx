@@ -9,7 +9,7 @@ type CartProps = {
 };
 
 const Cart = ({ cart }: CartProps) => {
-  const { deleteSingleCart, quantity, incrementQuantity, decrementQuantity } =
+  const { deleteSingleCart, incrementQuantity, decrementQuantity, quantity } =
     useCart();
 
   return (

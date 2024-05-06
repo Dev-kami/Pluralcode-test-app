@@ -5,10 +5,21 @@ import Image from "next/image";
 
 import { CiShoppingCart } from "react-icons/ci";
 import { useRouter } from "next/navigation";
+import { useCart } from "@/context/CartContext";
 
 const ProductsItem = ({ product }: { product: ProductsType }) => {
   const router = useRouter();
   const [viewDetails, setViewDetails] = useState(false);
+
+  const { addToCart } = useCart();
+
+  const newCart = {
+    id: product.id,
+    title: product.title,
+    price: product.price,
+    category: product.category,
+    image: product.image,
+  };
 
   return (
     <div className="mt-10 sm:w-[20rem] w-full border border-stone-400 rounded-lg overflow-hidden">
@@ -38,7 +49,10 @@ const ProductsItem = ({ product }: { product: ProductsType }) => {
 
       <div className="flex justify-between items-center px-3 my-5">
         <span>${product.price}</span>
-        <span className="bg-primary rounded-full p-1.5 cursor-pointer">
+        <span
+          onClick={() => addToCart(newCart)}
+          className="bg-primary rounded-full p-1.5 cursor-pointer"
+        >
           <CiShoppingCart size={30} />
         </span>
       </div>
