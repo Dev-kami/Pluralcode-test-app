@@ -9,9 +9,9 @@ const SignupPage = () => {
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
   return (
-    <div className="bg-primary/10 md:px-0 p-5">
+    <div className="h-screen w-full bg-primary/10 md:px-0 p-5">
       <Logo />
-      <div className="h-screen w-full flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center">
         <h1 className="text-3xl uppercase mt-10">Sign up</h1>
 
         <form className="sm:w-[27rem] w-full bg-white p-5 flex flex-col space-y-5 rounded-md mb-10 mt-5">
