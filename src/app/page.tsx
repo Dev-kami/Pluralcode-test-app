@@ -1,15 +1,12 @@
 import React from "react";
 import NavBar from "@/components/nav/NavBar";
-import { getAllProducts } from "@/services/getAllProducts";
 import ProductsWrapper from "@/components/ProductsWrapper";
 
-const page = async () => {
-  const products: ProductsType[] = await getAllProducts();
-
+const page = () => {
   return (
     <main>
       <NavBar />
-      <ProductsWrapper products={products} />
+      <ProductsWrapper />
     </main>
   );
 };

@@ -4,10 +4,12 @@ import React from "react";
 import ProductsHeader from "./ProductsHeader";
 import ProductsPage from "./Products";
 import Pagination from "./Pagination";
+import { useProducts } from "@/context/ProductContext";
 
 const PRODUCTS_PER_PAGE = 6;
 
-const ProductsWrapper = ({ products }: { products: ProductsType[] }) => {
+const ProductsWrapper = () => {
+  const { products } = useProducts();
   const [query, setQuery] = React.useState("");
   const [isActive, setIsActive] = React.useState(0);
   const [filteredProducts, setFilteredProducts] = React.useState(products);

@@ -3,6 +3,7 @@ import { Inter, Inconsolata } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import Footer from "@/components/Footer";
+import { ProductProvider } from "@/context/ProductContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,10 +25,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${inconsolata.variable}`}>
-        <CartProvider>
-          {children}
-          <Footer />
-        </CartProvider>
+        <ProductProvider>
+          <CartProvider>
+            {children}
+            <Footer />
+          </CartProvider>
+        </ProductProvider>
       </body>
     </html>
   );
