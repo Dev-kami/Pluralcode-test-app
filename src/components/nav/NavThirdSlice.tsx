@@ -1,13 +1,11 @@
 "use client";
 
-import Button from "@/ui/Button";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const NavThirdSlice = () => {
   const pathname = usePathname();
-  const router = useRouter();
 
   const navData = [
     { title: "Home", link: "/" },
@@ -29,18 +27,6 @@ const NavThirdSlice = () => {
           </Link>
         ))}
       </ul>
-
-      <div className="space-x-4">
-        <Button
-          onClick={() => router.push("/auth/signup")}
-          className="hover:bg-primary hover:text-white"
-        >
-          SignUp
-        </Button>
-        <Button onClick={() => router.push("/auth/login")} variant="primary">
-          Login
-        </Button>
-      </div>
     </div>
   );
 };
