@@ -29,7 +29,7 @@ export default function RootLayout({
       >
         <ProductProvider>
           <CartProvider>
-            <main className="relative max-w-[100rem] w-full">
+            <main className="relative max-w-[100rem] w-full h-full">
               {children}
               <Footer />
             </main>
