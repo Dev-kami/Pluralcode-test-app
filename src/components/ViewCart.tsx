@@ -30,7 +30,7 @@ const ViewCart = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center h-screen">
+    <div className="flex flex-col pt-20 h-screen">
       <h1 className="text-center text-2xl font-bold mb-3">
         Your Shopping Cart
       </h1>
@@ -38,7 +38,7 @@ const ViewCart = () => {
       {!carts.length ? (
         <div className="flex flex-col items-center">
           <p className="text-center">Your Cart is Empty</p>
-          <Button href="/products" variant="primary" className="mt-2">
+          <Button href="/" variant="primary" className="mt-2">
             Go back to products
           </Button>
         </div>
