@@ -43,7 +43,6 @@ const ViewCart = () => {
           </Button>
         </div>
       ) : (
-        // </div>
         <div className="flex flex-col space-y-5">
           {carts.map((cart) => (
             <div
