@@ -7,17 +7,18 @@ import React from "react";
 
 const ProductId = ({ product }: { product: ProductsType }) => {
   const { addToCart } = useCart();
+  const { id, category, image, price, title } = product;
 
   const newCart = {
-    id: product.id,
-    title: product.title,
-    price: product.price,
-    category: product.category,
-    image: product.image,
+    id,
+    title,
+    price,
+    category,
+    image,
   };
 
   return (
-    <div className="pt-60 px-10 flex gap-x-10 justify-between md:flex-row md:gap-y-0 gap-y-10 flex-col">
+    <div className="pt-10 px-10 flex gap-x-10 justify-between md:flex-row md:gap-y-0 gap-y-10 flex-col">
       <div className="w-full">
         <Image
           className="w-full h-[20rem]"
