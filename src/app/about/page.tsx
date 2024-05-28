@@ -2,15 +2,18 @@
 
 import React from "react";
 import NavBar from "@/components/nav/NavBar";
+import Button from "@/ui/Button";
 
 const AboutPage = () => {
   return (
     <div>
       <NavBar />
-      <div className="pt-60">
+      <div className="flex flex-col items-center h-screen pt-20">
         <h1>This is the about page</h1>
+        <Button variant="primary" onClick={() => history.back()}>
+          Go back
+        </Button>
       </div>
-      <button onClick={() => history.back()}>Go back</button>
     </div>
   );
 };
