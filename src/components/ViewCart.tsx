@@ -30,7 +30,7 @@ const ViewCart = () => {
   }
 
   return (
-    <div className="flex flex-col pt-20 h-screen">
+    <div className={`flex flex-col pt-5 ${!carts.length && "h-screen"}`}>
       <h1 className="text-center text-2xl font-bold mb-3">
         Your Shopping Cart
       </h1>
@@ -47,16 +47,15 @@ const ViewCart = () => {
           {carts.map((cart) => (
             <div
               key={cart.id}
-              className="border border-black p-10 mx-10 flex md:flex-row flex-col items-center gap-10"
+              className="border border-black sm:p-10 p-5 mx-10 flex md:flex-row flex-col items-center gap-10"
             >
-              <div>
-                <Image
-                  src={cart.image}
-                  alt={cart.title}
-                  width={250}
-                  height={250}
-                />
-              </div>
+              <Image
+                src={cart.image}
+                alt={cart.title}
+                width={250}
+                height={250}
+              />
+
               <div className="space-y-4">
                 <h1 className="font-extrabold text-xl">{cart.title}</h1>
                 <p>Price: ${cart.price}</p>
