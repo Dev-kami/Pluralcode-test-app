@@ -2,10 +2,12 @@
 
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const ViewCart = () => {
   const { carts, quantity, totalCartPrice } = useCart();
+  const router = useRouter();
 
   return (
     <div className="flex flex-col justify-center">
@@ -47,6 +49,12 @@ const ViewCart = () => {
       >
         Total: ${totalCartPrice()}
       </h2>
+      <button
+        onClick={() => router.push("/success")}
+        className="bg-stone-700 w-fit p-1 text-white ml-10"
+      >
+        checkout
+      </button>
     </div>
   );
 };
