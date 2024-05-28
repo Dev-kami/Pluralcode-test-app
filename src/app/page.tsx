@@ -4,10 +4,10 @@ import ProductsWrapper from "@/components/ProductsWrapper";
 
 const page = () => {
   return (
-    <main>
+    <>
       <NavBar />
       <ProductsWrapper />
-    </main>
+    </>
   );
 };
 
