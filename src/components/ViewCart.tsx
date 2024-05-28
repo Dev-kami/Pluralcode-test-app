@@ -1,6 +1,8 @@
 "use client";
 
 import { useCart } from "@/context/CartContext";
+import { stripePayment } from "@/services/stripePayment";
+import Button from "@/ui/Button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -9,15 +11,39 @@ const ViewCart = () => {
   const { carts, quantity, totalCartPrice } = useCart();
   const router = useRouter();
 
+  async function handlePayment(cartId: number) {
+    console.log(cartId);
+    if (!cartId) return;
+
+    const cart = carts.find((cart) => cart.id === cartId);
+    if (!cart) return;
+    try {
+      const data = await stripePayment(cart.title, cart.price, quantity);
+
+      if (!data) return;
+
+      console.log(data);
+      router.push(data.url);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
-    <div className="flex flex-col justify-center">
-      <h1 className="pt-56 text-center text-2xl font-bold mb-10">
+    <div className="flex flex-col justify-center h-screen">
+      <h1 className="text-center text-2xl font-bold mb-3">
         Your Shopping Cart
       </h1>
 
       {!carts.length ? (
-        <p className="text-center mb-[15.7rem]">Your Cart is Empty</p>
+        <div className="flex flex-col items-center">
+          <p className="text-center">Your Cart is Empty</p>
+          <Button href="/products" variant="primary" className="mt-2">
+            Go back to products
+          </Button>
+        </div>
       ) : (
+        // </div>
         <div className="flex flex-col space-y-5">
           {carts.map((cart) => (
             <div
@@ -36,6 +62,12 @@ const ViewCart = () => {
                 <h1 className="font-extrabold text-xl">{cart.title}</h1>
                 <p>Price: ${cart.price}</p>
                 <p>Quantity: {quantity}</p>
+                <Button
+                  onClick={() => handlePayment(cart.id)}
+                  className="bg-stone-700 text-white"
+                >
+                  checkout
+                </Button>
               </div>
             </div>
           ))}
@@ -49,12 +81,6 @@ const ViewCart = () => {
       >
         Total: ${totalCartPrice()}
       </h2>
-      <button
-        onClick={() => router.push("/success")}
-        className="bg-stone-700 w-fit p-1 text-white ml-10"
-      >
-        checkout
-      </button>
     </div>
   );
 };
