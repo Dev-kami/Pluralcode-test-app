@@ -24,11 +24,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${inconsolata.variable}`}>
+      <body
+        className={`${inter.className} ${inconsolata.variable} flex flex-col items-center`}
+      >
         <ProductProvider>
           <CartProvider>
-            {children}
-            <Footer />
+            <main className="relative max-w-[100rem] w-full">
+              {children}
+              <Footer />
+            </main>
           </CartProvider>
         </ProductProvider>
       </body>
