@@ -4,7 +4,7 @@ export async function stripePayment(
   quantity: number
 ) {
   try {
-    const res = await fetch("http://localhost:5000/checkout", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/checkout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
