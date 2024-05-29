@@ -10,22 +10,23 @@ import React from "react";
 const ViewCart = () => {
   const { carts, quantity, totalCartPrice } = useCart();
   const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
 
   async function handlePayment(cartId: number) {
-    console.log(cartId);
     if (!cartId) return;
 
     const cart = carts.find((cart) => cart.id === cartId);
     if (!cart) return;
     try {
+      setLoading(true);
       const data = await stripePayment(cart.title, cart.price, quantity);
 
       if (!data) return;
-
-      console.log(data);
       router.push(data.url);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -63,6 +64,7 @@ const ViewCart = () => {
                 <Button
                   onClick={() => handlePayment(cart.id)}
                   className="bg-stone-700 text-white"
+                  loading={loading}
                 >
                   checkout
                 </Button>
