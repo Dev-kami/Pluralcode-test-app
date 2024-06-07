@@ -1,8 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import React from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+
+import Button from "@/ui/Button";
 
 const NavThirdSlice = () => {
     const pathname = usePathname();
@@ -27,6 +29,13 @@ const NavThirdSlice = () => {
                     </Link>
                 ))}
             </ul>
+
+            <div className="flex space-x-5">
+                <Button href="/login">Login</Button>
+                <Button variant="primary" href="/signup">
+                    Sign up
+                </Button>
+            </div>
         </div>
     );
 };
