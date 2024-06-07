@@ -4,16 +4,14 @@ import { getSingleProduct } from "@/services/getSinglePost";
 import React from "react";
 
 const ProductIdPage = async ({ params }: { params: { productId: string } }) => {
-  const singleProduct: ProductsType = await getSingleProduct(
-    Number(params.productId)
-  );
+    const singleProduct: ProductsType = await getSingleProduct(Number(params.productId));
 
-  return (
-    <div>
-      <NavBar />
-      <ProductId product={singleProduct} />
-    </div>
-  );
+    return (
+        <div>
+            <NavBar />
+            <ProductId product={singleProduct} />
+        </div>
+    );
 };
 
 export default ProductIdPage;

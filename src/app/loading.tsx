@@ -2,7 +2,7 @@ import Spinner from "@/ui/Spinner";
 import React from "react";
 
 const Loading = () => {
-  return <Spinner />;
+    return <Spinner />;
 };
 
 export default Loading;

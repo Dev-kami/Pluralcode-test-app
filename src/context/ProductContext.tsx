@@ -3,42 +3,56 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 type ProductContextType = {
-  products: ProductsType[];
-  setProducts: React.Dispatch<React.SetStateAction<ProductsType[]>>;
+    products: ProductsType[];
+    setProducts: React.Dispatch<React.SetStateAction<ProductsType[]>>;
+    isLoading: boolean;
 };
 
 const ProductContext = createContext({} as ProductContextType);
 
 const ProductProvider = ({ children }: { children: React.ReactNode }) => {
-  const [products, setProducts] = useState<ProductsType[]>([]);
+    const [products, setProducts] = useState<ProductsType[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
 
-  // fetch Products
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
+    // fetch Products
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                setIsLoading(true);
+                const res = await fetch("https://fakestoreapi.com/products");
+                const data = await res.json();
+                setProducts(data);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
 
-  return (
-    <ProductContext.Provider
-      value={{
-        products,
-        setProducts,
-      }}
-    >
-      {children}
-    </ProductContext.Provider>
-  );
+        fetchProducts();
+    }, []);
+
+    return (
+        <ProductContext.Provider
+            value={{
+                isLoading,
+                products,
+                setProducts,
+            }}
+        >
+            {children}
+        </ProductContext.Provider>
+    );
 };
 
 const useProducts = () => {
-  const context = useContext(ProductContext);
+    const context = useContext(ProductContext);
 
-  if (context === undefined) {
-    throw new Error("useProducts must be used within a ProductProvider");
-  }
+    if (context === undefined) {
+        throw new Error("useProducts must be used within a ProductProvider");
+    }
 
-  return context;
+    return context;
 };
 
 export { ProductProvider, useProducts };

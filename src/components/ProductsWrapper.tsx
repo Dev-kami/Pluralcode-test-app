@@ -5,70 +5,75 @@ import ProductsHeader from "./ProductsHeader";
 import ProductsPage from "./Products";
 import Pagination from "./Pagination";
 import { useProducts } from "@/context/ProductContext";
+import Spinner from "@/ui/Spinner";
 
 const PRODUCTS_PER_PAGE = 6;
 
 const ProductsWrapper = () => {
-  const { products } = useProducts();
-  const [query, setQuery] = React.useState("");
-  const [isActive, setIsActive] = React.useState(0);
-  const [filteredProducts, setFilteredProducts] = React.useState(products);
+    const { products, isLoading } = useProducts();
+    const [query, setQuery] = React.useState("");
+    const [isActive, setIsActive] = React.useState(0);
+    const [filteredProducts, setFilteredProducts] = React.useState(products);
 
-  function handleFilterByCategory(id: number, category: string) {
-    setIsActive(id);
+    function handleFilterByCategory(id: number, category: string) {
+        setIsActive(id);
 
-    // If "all products" is selected, show all products
-    if (category === "all products") {
-      setFilteredProducts(products);
-    } else {
-      // Filter products by category
-      const filteredByCategory = products.filter(
-        (product) => product.category === category
-      );
+        // If "all products" is selected, show all products
+        if (category === "all products") {
+            setFilteredProducts(products);
+        } else {
+            // Filter products by category
+            const filteredByCategory = products.filter((product) => product.category === category);
 
-      // Apply query filtering
-      const filteredByQuery = filteredByCategory.filter((product) =>
-        product.title.toLowerCase().includes(query.toLowerCase())
-      );
+            // Apply query filtering
+            const filteredByQuery = filteredByCategory.filter((product) =>
+                product.title.toLowerCase().includes(query.toLowerCase())
+            );
 
-      setFilteredProducts(filteredByQuery);
+            setFilteredProducts(filteredByQuery);
+        }
     }
-  }
 
-  // Filter products by query
-  React.useEffect(() => {
-    const filteredByQuery = products.filter((product) =>
-      product.title.toLowerCase().includes(query.toLowerCase())
+    // Filter products by query
+    React.useEffect(() => {
+        const filteredByQuery = products.filter((product) =>
+            product.title.toLowerCase().includes(query.toLowerCase())
+        );
+        setFilteredProducts(filteredByQuery);
+    }, [query, products]);
+
+    // Pagination
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const indexOfLastProduct = currentPage * PRODUCTS_PER_PAGE;
+    const indexOfFirstProduct = indexOfLastProduct - PRODUCTS_PER_PAGE;
+    const totalProducts = query ? filteredProducts.length : products.length;
+    const currentProducts = query
+        ? filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct)
+        : filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
+    return (
+        <div>
+            <ProductsHeader
+                query={query}
+                setQuery={setQuery}
+                onFilterByCategory={handleFilterByCategory}
+                isActive={isActive}
+            />
+            {isLoading ? (
+                <Spinner />
+            ) : (
+                <>
+                    <ProductsPage products={currentProducts} />
+                    <Pagination
+                        setCurrentPage={setCurrentPage}
+                        indexOfLastProduct={indexOfLastProduct}
+                        indexOfFirstProduct={indexOfFirstProduct}
+                        totalProducts={totalProducts}
+                    />
+                </>
+            )}
+        </div>
     );
-    setFilteredProducts(filteredByQuery);
-  }, [query, products]);
-
-  // Pagination
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const indexOfLastProduct = currentPage * PRODUCTS_PER_PAGE;
-  const indexOfFirstProduct = indexOfLastProduct - PRODUCTS_PER_PAGE;
-  const totalProducts = query ? filteredProducts.length : products.length;
-  const currentProducts = query
-    ? filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct)
-    : filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-
-  return (
-    <div>
-      <ProductsHeader
-        query={query}
-        setQuery={setQuery}
-        onFilterByCategory={handleFilterByCategory}
-        isActive={isActive}
-      />
-      <ProductsPage products={currentProducts} />
-      <Pagination
-        setCurrentPage={setCurrentPage}
-        indexOfLastProduct={indexOfLastProduct}
-        indexOfFirstProduct={indexOfFirstProduct}
-        totalProducts={totalProducts}
-      />
-    </div>
-  );
 };
 
 export default ProductsWrapper;
