@@ -23,7 +23,7 @@ function SignUpPage() {
                     className="w-full border-2 border-stone-300 focus-within:border-primary rounded-md h-10 px-3"
                     required
                     type="text"
-                    placeholder="firstName..."
+                    placeholder="John"
                     name="firstName"
                 />
                 <input
@@ -32,7 +32,7 @@ function SignUpPage() {
                     className="w-full border-2 border-stone-300 focus-within:border-primary rounded-md h-10 px-3"
                     required
                     type="text"
-                    placeholder="lastName..."
+                    placeholder="Doe"
                     name="lastName"
                 />
                 <input
@@ -41,7 +41,7 @@ function SignUpPage() {
                     className="w-full border-2 border-stone-300 focus-within:border-primary rounded-md h-10 px-3"
                     required
                     type="email"
-                    placeholder="Email..."
+                    placeholder="you@example.com"
                     name="email"
                 />
                 <input
@@ -50,7 +50,7 @@ function SignUpPage() {
                     className="w-full border-2 border-stone-300 focus-within:border-primary rounded-md h-10 px-3"
                     required
                     type="password"
-                    placeholder="Password..."
+                    placeholder="********"
                     name="password"
                 />
 
