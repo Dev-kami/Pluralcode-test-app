@@ -2,15 +2,50 @@
 import Button from "@/ui/Button";
 import Link from "next/link";
 import { useState } from "react";
+import { signup } from "@/services/auth";
+import { useRouter } from "next/navigation";
+import { setCookie } from "cookies-next";
+import { AuthResponse } from "@/types/auth";
+import { ACCESS_TOKEN_COOKIE_NAME, ACCESS_TOKEN_COOKIE_OPTIONS } from "@/utils/token";
 
 function SignUpPage() {
+    const router = useRouter();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    function handleSignUp(e: React.FormEvent<HTMLFormElement>) {
+
+    async function handleSignUp(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        // ...
+        const credentials = {
+            firstName,
+            lastName,
+            email,
+            password,
+        };
+
+        try {
+            const data: AuthResponse = await signup(credentials);
+
+            if (data.status === "success") {
+                setCookie(ACCESS_TOKEN_COOKIE_NAME, data.token, {
+                    ...ACCESS_TOKEN_COOKIE_OPTIONS,
+                });
+            }
+            console.log(
+                `Sign up successful! Redirecting to ${
+                    data.data.user.role.includes("admin") ? "Admin" : "Home"
+                } page`
+            );
+
+            if (data.data.user.role.includes("admin")) {
+                router.push("/admin");
+            } else {
+                router.push("/");
+            }
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     return (
