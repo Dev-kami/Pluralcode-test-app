@@ -1,15 +1,50 @@
 "use client";
-import Button from "@/ui/Button";
-import Link from "next/link";
 import { useState } from "react";
+import { setCookie } from "cookies-next";
+import Link from "next/link";
+
+import { login } from "@/services/auth";
+import { ACCESS_TOKEN_COOKIE_NAME, ACCESS_TOKEN_COOKIE_OPTIONS } from "@/utils/token";
+import { AuthResponse } from "@/types/auth";
+import Button from "@/ui/Button";
+import { useRouter } from "next/navigation";
 
 function LoginPage() {
+    const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    function handleLogin(e: React.FormEvent) {
+    async function handleLogin(e: React.FormEvent) {
         e.preventDefault();
-        // ...
+
+        const credentials = {
+            email,
+            password,
+        };
+
+        try {
+            const data: AuthResponse = await login(credentials);
+
+            if (data.status === "success") {
+                setCookie(ACCESS_TOKEN_COOKIE_NAME, data.token, {
+                    ...ACCESS_TOKEN_COOKIE_OPTIONS,
+                });
+
+                console.log(
+                    `Login successful! Redirecting to ${
+                        data.data.user.role.includes("admin") ? "Admin" : "Home"
+                    } page`
+                );
+
+                if (data.data.user.role.includes("admin")) {
+                    router.push("/admin");
+                } else {
+                    router.push("/");
+                }
+            }
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     return (
