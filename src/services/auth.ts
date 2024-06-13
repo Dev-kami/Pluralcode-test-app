@@ -16,8 +16,8 @@ export async function login(credentials: LoginInput) {
         }
 
         return res.json();
-    } catch (err) {
-        console.log(err);
+    } catch (err: any) {
+        console.log(err.message);
     }
 }
 
@@ -37,12 +37,13 @@ export async function signup(credentials: SignupInput) {
         }
 
         return res.json();
-    } catch (err) {
+    } catch (err: any) {
         console.log(err);
     }
 }
 
-export async function getMe(token: string) {
+export async function getMe() {
+    const token = localStorage.getItem("accessToken");
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/users/me`, {
             headers: {
@@ -56,7 +57,7 @@ export async function getMe(token: string) {
         }
 
         return res.json();
-    } catch (err) {
+    } catch (err: any) {
         console.log(err);
     }
 }
