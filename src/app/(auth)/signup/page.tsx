@@ -4,9 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { signup } from "@/services/auth";
 import { useRouter } from "next/navigation";
-import { setCookie } from "cookies-next";
 import { AuthResponse } from "@/types/auth";
-import { ACCESS_TOKEN_COOKIE_NAME, ACCESS_TOKEN_COOKIE_OPTIONS } from "@/utils/token";
 
 function SignUpPage() {
     const router = useRouter();
@@ -28,20 +26,16 @@ function SignUpPage() {
             const data: AuthResponse = await signup(credentials);
 
             if (data.status === "success") {
-                setCookie(ACCESS_TOKEN_COOKIE_NAME, data.token, {
-                    ...ACCESS_TOKEN_COOKIE_OPTIONS,
-                });
-            }
-            console.log(
-                `Sign up successful! Redirecting to ${
-                    data.data.user.role.includes("admin") ? "Admin" : "Home"
-                } page`
-            );
-
-            if (data.data.user.role.includes("admin")) {
-                router.push("/admin");
-            } else {
-                router.push("/");
+                console.log(
+                    `Sign up successful! Redirecting to ${
+                        data.data.user.role.includes("admin") ? "Admin" : "Home"
+                    } page`
+                );
+                if (data.data.user.role.includes("admin")) {
+                    router.push("/admin");
+                } else {
+                    router.push("/");
+                }
             }
         } catch (err) {
             console.error(err);

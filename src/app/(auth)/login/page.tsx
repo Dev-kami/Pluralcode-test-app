@@ -26,10 +26,6 @@ function LoginPage() {
             const data: AuthResponse = await login(credentials);
 
             if (data.status === "success") {
-                setCookie(ACCESS_TOKEN_COOKIE_NAME, data.token, {
-                    ...ACCESS_TOKEN_COOKIE_OPTIONS,
-                });
-
                 console.log(
                     `Login successful! Redirecting to ${
                         data.data.user.role.includes("admin") ? "Admin" : "Home"
