@@ -1,10 +1,8 @@
 "use client";
 import { useState } from "react";
-import { setCookie } from "cookies-next";
 import Link from "next/link";
 
 import { login } from "@/services/auth";
-import { ACCESS_TOKEN_COOKIE_NAME, ACCESS_TOKEN_COOKIE_OPTIONS } from "@/utils/token";
 import { AuthResponse } from "@/types/auth";
 import Button from "@/ui/Button";
 import { useRouter } from "next/navigation";
