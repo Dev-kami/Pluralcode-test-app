@@ -41,3 +41,22 @@ export async function signup(credentials: SignupInput) {
         console.log(err);
     }
 }
+
+export async function getMe(token: string) {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/users/me`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (!res.ok) {
+            const { message } = await res.json();
+            throw new Error(message || "Failed to fetch user");
+        }
+
+        return res.json();
+    } catch (err) {
+        console.log(err);
+    }
+}
