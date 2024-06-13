@@ -23,14 +23,15 @@ function LoginPage() {
         try {
             const data: AuthResponse = await login(credentials);
 
-            if (data.status === "success") {
+            if (data?.status === "success") {
+                localStorage.setItem("accessToken", data.token);
                 console.log(
                     `Login successful! Redirecting to ${
-                        data.data.user.role.includes("admin") ? "Admin" : "Home"
+                        data?.data?.user?.role.includes("admin") ? "Admin" : "Home"
                     } page`
                 );
 
-                if (data.data.user.role.includes("admin")) {
+                if (data?.data?.user?.role.includes("admin")) {
                     router.push("/admin");
                 } else {
                     router.push("/");
