@@ -26,3 +26,10 @@ export interface AuthResponse {
         user: IUser;
     };
 }
+
+export interface currentUserResponse {
+    status: string;
+    data: {
+        user: IUser;
+    };
+}
