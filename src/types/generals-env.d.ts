@@ -6,3 +6,8 @@ type ProductsType = {
     image: string;
     description?: string;
 };
+
+interface ErrorResponse {
+    status: string;
+    message: string;
+}
