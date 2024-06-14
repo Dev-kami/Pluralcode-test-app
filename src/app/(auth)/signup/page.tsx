@@ -5,6 +5,7 @@ import { useState } from "react";
 import { signup } from "@/services/auth";
 import { useRouter } from "next/navigation";
 import { AuthResponse } from "@/types/auth";
+import { setToken } from "@/utils/token";
 
 function SignUpPage() {
     const router = useRouter();
@@ -26,6 +27,9 @@ function SignUpPage() {
             const data: AuthResponse = await signup(credentials);
 
             if (data?.status === "success") {
+                const token = data.token;
+                setToken("token", token);
+
                 console.log(
                     `Sign up successful! Redirecting to ${
                         data?.data?.user?.role.includes("admin") ? "Admin" : "Home"
