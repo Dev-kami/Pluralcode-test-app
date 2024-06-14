@@ -6,6 +6,7 @@ import { login } from "@/services/auth";
 import { AuthResponse } from "@/types/auth";
 import Button from "@/ui/Button";
 import { useRouter } from "next/navigation";
+import { setToken } from "@/utils/token";
 
 function LoginPage() {
     const router = useRouter();
@@ -24,7 +25,9 @@ function LoginPage() {
             const data: AuthResponse = await login(credentials);
 
             if (data?.status === "success") {
-                localStorage.setItem("accessToken", data.token);
+                const token = data.token;
+                setToken("token", token);
+
                 console.log(
                     `Login successful! Redirecting to ${
                         data?.data?.user?.role.includes("admin") ? "Admin" : "Home"
