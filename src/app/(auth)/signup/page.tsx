@@ -32,10 +32,10 @@ function SignUpPage() {
 
                 console.log(
                     `Sign up successful! Redirecting to ${
-                        data?.data?.user?.role.includes("admin") ? "Admin" : "Home"
+                        data.data.user.role.includes("admin") ? "Admin" : "Home"
                     } page`
                 );
-                if (data?.data?.user?.role.includes("admin")) {
+                if (data.data.user.role.includes("admin")) {
                     router.push("/admin");
                 } else {
                     router.push("/");

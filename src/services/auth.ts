@@ -44,7 +44,6 @@ export async function signup(credentials: SignupInput) {
 
 export async function getMe() {
     const token = "";
-    console.log("TOKEN", token);
 
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/users/me`, {
