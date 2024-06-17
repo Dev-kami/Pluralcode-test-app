@@ -12,7 +12,7 @@ import { useUser } from "@/context/UserContext";
 const NavThirdSlice = () => {
     const pathname = usePathname();
     const router = useRouter();
-    const { user } = useUser();
+    const { user, setUser } = useUser();
 
     const navData = [
         { title: "Home", link: "/" },
@@ -21,6 +21,8 @@ const NavThirdSlice = () => {
 
     function handleLogout() {
         localStorage.removeItem("token");
+        setUser(null);
+
         router.push("/login");
     }
 
@@ -42,18 +44,22 @@ const NavThirdSlice = () => {
             </ul>
 
             {user?.status ? (
-                <p>
+                <p className="flex items-center space-x-2">
                     Welcome{" "}
-                    <span>
-                        <span className="text-primary">
-                            {user.data.user.firstName} {user.data.user.lastName}
-                        </span>
-
-                        <span className="text-stone-400"> | </span>
-                        <Button onClick={handleLogout} variant="primary">
-                            <TbLogout />
-                        </Button>
+                    <span className="text-primary ml-2 capitalize">
+                        {user.data.user.firstName} {user.data.user.lastName}
                     </span>
+                    <span className="text-stone-400"> | </span>
+                    <Button
+                        onClick={handleLogout}
+                        className="border-2"
+                        title="logout"
+                        onTimeUpdate={() => {
+                            console.log("on time");
+                        }}
+                    >
+                        <TbLogout size={22} />
+                    </Button>
                 </p>
             ) : (
                 <div className="flex space-x-5">
