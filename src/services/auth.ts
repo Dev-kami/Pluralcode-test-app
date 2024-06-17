@@ -1,5 +1,4 @@
 import { LoginInput, SignupInput } from "@/types/auth";
-import { getToken } from "@/utils/token";
 
 export async function login(credentials: LoginInput) {
     try {
@@ -42,26 +41,3 @@ export async function signup(credentials: SignupInput) {
         console.log(err);
     }
 }
-
-// export async function getMe() {
-//     // const token = "";
-//     const token = getToken("token");
-//     console.log(token);
-
-//     try {
-//         const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/users/me`, {
-//             headers: {
-//                 Authorization: `Bearer ${token}`,
-//             },
-//         });
-
-//         if (!res.ok) {
-//             const { message } = await res.json();
-//             throw new Error(message || "Failed to fetch user");
-//         }
-
-//         return res.json();
-//     } catch (err: any) {
-//         console.log(err);
-//     }
-// }
