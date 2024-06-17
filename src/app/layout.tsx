@@ -4,6 +4,7 @@ import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import Footer from "@/components/Footer";
 import { ProductProvider } from "@/context/ProductContext";
+import { UserProvider } from "@/context/UserContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,14 +28,16 @@ export default function RootLayout({
             <body
                 className={`${inter.className} ${inconsolata.variable} flex flex-col items-center`}
             >
-                <ProductProvider>
-                    <CartProvider>
-                        <main className="relative max-w-[100rem] w-full h-full">
-                            {children}
-                            <Footer />
-                        </main>
-                    </CartProvider>
-                </ProductProvider>
+                <UserProvider>
+                    <ProductProvider>
+                        <CartProvider>
+                            <main className="relative max-w-[100rem] w-full h-full">
+                                {children}
+                                <Footer />
+                            </main>
+                        </CartProvider>
+                    </ProductProvider>
+                </UserProvider>
             </body>
         </html>
     );
