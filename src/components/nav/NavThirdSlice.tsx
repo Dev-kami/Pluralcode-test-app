@@ -27,7 +27,11 @@ const NavThirdSlice = () => {
     }
 
     return (
-        <div className="md:px-10 px-5 pt-6 pb-3 border-b border-b-stone-400 flex items-center justify-between">
+        <div
+            className={`md:px-10 px-5 pt-6 pb-3 border-b border-b-stone-400 flex items-center justify-between ${
+                user?.status && "sm:flex-row flex-col-reverse"
+            }`}
+        >
             <ul className="flex space-x-7">
                 {navData.map(({ title, link }, index) => (
                     <Link
@@ -50,19 +54,12 @@ const NavThirdSlice = () => {
                         {user.data.user.firstName} {user.data.user.lastName}
                     </span>
                     <span className="text-stone-400"> | </span>
-                    <Button
-                        onClick={handleLogout}
-                        className="border-2"
-                        title="logout"
-                        onTimeUpdate={() => {
-                            console.log("on time");
-                        }}
-                    >
+                    <Button onClick={handleLogout} className="border-2" title="logout">
                         <TbLogout size={22} />
                     </Button>
                 </p>
             ) : (
-                <div className="flex space-x-5">
+                <div className="flex sm:space-x-5 space-x-2">
                     <Button href="/login">Login</Button>
                     <Button variant="primary" href="/signup">
                         Sign up

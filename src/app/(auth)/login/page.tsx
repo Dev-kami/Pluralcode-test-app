@@ -44,7 +44,7 @@ function LoginPage() {
     }
 
     return (
-        <form className="text-center sm:w-[350px] w-full space-y-5" onSubmit={handleLogin}>
+        <form className="text-center sm:w-[350px] w-full px-5 space-y-5" onSubmit={handleLogin}>
             <h1 className="text-3xl">Login</h1>
             <div className="flex flex-col space-y-5">
                 <input

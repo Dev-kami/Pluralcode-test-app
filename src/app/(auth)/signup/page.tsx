@@ -45,7 +45,7 @@ function SignUpPage() {
     }
 
     return (
-        <form className="text-center sm:w-[350px] w-full space-y-5" onSubmit={handleSignUp}>
+        <form className="text-center sm:w-[350px] w-full px-5 space-y-5" onSubmit={handleSignUp}>
             <h1 className="text-3xl">Sign Up</h1>
             <div className="flex flex-col space-y-5">
                 <input
