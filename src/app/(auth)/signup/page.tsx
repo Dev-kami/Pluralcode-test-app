@@ -23,7 +23,8 @@ function SignUpPage() {
         };
 
         try {
-            const data: AuthResponse = await signup(credentials);
+            const res = await signup(credentials);
+            const data = res as AuthResponse;
 
             if (data?.status === "success") {
                 localStorage.setItem("token", data.token);
